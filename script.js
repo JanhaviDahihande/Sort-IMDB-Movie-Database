@@ -59,7 +59,8 @@ let movies = [
 ]
 
 window.onload = function() {
-    const sorted_movies_by_rank = sortMoviesByRank(movies);
+    // const sorted_movies_by_rank = sortMoviesByRank(movies);
+    const sorted_movies_by_rank = sortMoviesByAttr(movies, 'title');
     // Display Movies list
     displayMovies(sorted_movies_by_rank);
 }
@@ -116,6 +117,23 @@ function sortMoviesByRank(movies){
  */
 function sortMoviesByAttr(movies, sortAttr){
   // CODE GOES HERE
+  for (let j = 0; j < movies.length - 1; j++) {
+
+    let max_obj = movies[j];
+    let max_location = j;
+
+    for (let i = j; i < movies.length; i++) {
+        if (movies[i][sortAttr] > max_obj[sortAttr]) {
+            // Know max AND it's index (location)
+            max_obj = movies[i]
+            max_location = i
+        }
+    }
+    // swap the first and the last
+    movies[max_location] = movies[j] // --> 10
+    movies[j] = max_obj;
+}
+return movies;
 }
 
 
